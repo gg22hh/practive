@@ -1,0 +1,5 @@
+CREATE TABLE users(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(255),
+	party VARCHAR(255)
+)
