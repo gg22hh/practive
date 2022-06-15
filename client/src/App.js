@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
+import { User } from "./components/User";
 
 function App() {
     const [users, setUsers] = useState([]);
@@ -57,17 +58,15 @@ function App() {
         }
     };
 
-    const usersList = users?.map((user) => {
+    const usersList = users?.map((user, index) => {
         return (
-            <div className="user" key={user.id}>
-                <button onClick={() => deleteUser(user.id)}>&#10006;</button>
-                <div className="user__name">
-                    Имя: <span>{user.name}</span>
-                </div>
-                <div className="party">
-                    Группа: <span>{user.party}</span>
-                </div>
-            </div>
+            <User
+                key={user.id}
+                user={user}
+                deleteUser={() => deleteUser(user.id)}
+                users={users}
+                setUsers={setUsers}
+            />
         );
     });
 
@@ -84,12 +83,14 @@ function App() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Введите имя"
+                        required
                     />
                     <input
                         type="text"
                         value={party}
                         onChange={(e) => setParty(e.target.value)}
                         placeholder="Введите группу"
+                        required
                     />
                     <button>Добавить</button>
                 </form>

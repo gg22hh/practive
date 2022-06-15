@@ -59,6 +59,8 @@ body {
     font-size: 18px;
     height: 100%;
     font-family: "Nunito", sans-serif;
+    color: white;
+    background-color: #202124;
 }
 
 .container {

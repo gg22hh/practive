@@ -1,11 +1,15 @@
 .app {
     animation: app 2s;
+    padding-top: 30px;
     &__form {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        margin-bottom: 50px;
+        gap: 30px;
+        margin-bottom: 30px;
         animation: form 2s;
+        background-color: #27272cc2;
+        padding: 20px 0 20px;
+        border-radius: 8px;
         & h1 {
             font-size: 35px;
             font-weight: 600;
@@ -18,6 +22,7 @@
             width: 300px;
             margin: 0 auto;
             padding: 3px 10px;
+            color: white;
         }
         & button {
             padding: 3px 15px;
@@ -25,6 +30,7 @@
             border-radius: 5px;
             margin: 0 auto;
             transition: all 0.3s;
+            color: white;
             &:hover {
                 background-color: teal;
                 color: white;
@@ -42,17 +48,91 @@
     width: 200px;
     border: 1px solid teal;
     border-radius: 5px;
-    padding: 20px 30px 20px 20px;
+    padding: 20px 30px 10px 20px;
     position: relative;
-    & button {
-        position: absolute;
-        top: 5px;
-        right: 6px;
-    }
-    & div {
+    background-color: #27272cc2;
+    &__name,
+    &__party {
         display: flex;
         justify-content: space-between;
     }
+    &__party {
+        margin-bottom: 5px;
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & button {
+            color: white;
+            transition: all 0.2s;
+            &:hover {
+                color: teal;
+            }
+        }
+    }
+}
+
+.edit {
+    border: 1px solid teal;
+    border-radius: 8px;
+    width: 350px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: #27272c;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    &__close {
+        position: absolute;
+        top: 3px;
+        right: 6px;
+        color: white;
+        transition: all 0.2s;
+        &:hover {
+            color: teal;
+        }
+    }
+    & h1 {
+        font-size: 25px;
+    }
+    & input {
+        border: 1px solid teal;
+        border-radius: 5px;
+        outline: unset;
+        width: 300px;
+        margin: 0 auto;
+        padding: 3px 10px;
+        color: white;
+    }
+    &__submit {
+        padding: 3px 15px;
+        border: 1px solid teal;
+        border-radius: 5px;
+        margin: 0 auto;
+        transition: all 0.3s;
+        color: white;
+        &:hover {
+            background-color: teal;
+            color: white;
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.37);
+    z-index: 1;
 }
 
 @keyframes app {
