@@ -40,10 +40,34 @@ class UserController {
         res.json(user.rows[0]);
     }
     async updateUser(req, res) {
-        const { id, name, party } = req.body;
+        const {
+            id,
+            name,
+            party,
+            overall,
+            subject1,
+            subject2,
+            subject3,
+            subject4,
+            subject5,
+            subject6,
+            subject7,
+        } = req.body;
         const user = await db.query(
-            "UPDATE users SET name = $1, party = $2 where id = $3 RETURNING *",
-            [name, party, id]
+            "UPDATE users SET name = $1, party = $2, overall = $3, subject1 = $4, subject2 = $5, subject3 = $6, subject4 = $7, subject5 = $8, subject6 = $9, subject7 = $10 where id = $11 RETURNING *",
+            [
+                name,
+                party,
+                overall,
+                subject1,
+                subject2,
+                subject3,
+                subject4,
+                subject5,
+                subject6,
+                subject7,
+                id,
+            ]
         );
         res.json(user.rows[0]);
     }
