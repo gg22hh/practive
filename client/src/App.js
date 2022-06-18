@@ -8,6 +8,12 @@ function App() {
     const [name, setName] = useState("");
     const [party, setParty] = useState("");
     const [overall, setOverall] = useState(0);
+    const filtersObj = {
+        name: false,
+        overall: false,
+        party: false,
+    };
+    const [filters, setFilters] = useState(filtersObj);
     const [subjects, setSubjects] = useState({
         subject1: 0,
         subject2: 0,
@@ -33,16 +39,52 @@ function App() {
         }
     }, [subjects]);
 
-    const getUsers = async () => {
-        try {
-            const response = await fetch("http://localhost:8080/api/user");
-            const json = await response.json();
+    useEffect(() => {
+        const getUsers = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/user");
+                const json = await response.json();
+                if (filters.name) {
+                    const updatedJson = json.sort((a, b) => {
+                        const nameA = a.name.toLowerCase();
+                        const nameB = b.name.toLowerCase();
+                        if (nameA < nameB) {
+                            return -1;
+                        } else if (nameA > nameB) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
+                    setUsers(updatedJson);
+                }
+                if (filters.party) {
+                    const updatedJson = json.sort((a, b) => {
+                        const partyA = a.party.toLowerCase();
+                        const partyB = b.party.toLowerCase();
+                        if (partyA < partyB) {
+                            return -1;
+                        } else if (partyA > partyB) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
+                    setUsers(updatedJson);
+                }
+                if (filters.overall) {
+                    setUsers(
+                        json.sort((a, b) => a.overall - b.overall).reverse()
+                    );
+                }
 
-            setUsers(json);
-        } catch (err) {
-            console.error(err.message);
-        }
-    };
+                setUsers(json);
+            } catch (err) {
+                console.error(err.message);
+            }
+        };
+        getUsers();
+    }, [filters]);
 
     const addUser = async (e) => {
         e.preventDefault();
@@ -108,9 +150,6 @@ function App() {
         );
     });
 
-    useEffect(() => {
-        getUsers();
-    }, []);
     return (
         <div className="app">
             <div className="container">
@@ -324,6 +363,41 @@ function App() {
 
                     <button>Добавить</button>
                 </form>
+                <div className="app__sort">
+                    <div className="app__sort-title">Сортировка</div>
+                    <div className="app__sort-buttons">
+                        <button
+                            className={
+                                filters.name ? "button active" : "button"
+                            }
+                            onClick={() =>
+                                setFilters({ ...filtersObj, name: true })
+                            }
+                        >
+                            Имя
+                        </button>
+                        <button
+                            className={
+                                filters.party ? "button active" : "button"
+                            }
+                            onClick={() =>
+                                setFilters({ ...filtersObj, party: true })
+                            }
+                        >
+                            Группа
+                        </button>
+                        <button
+                            className={
+                                filters.overall ? "button active" : "button"
+                            }
+                            onClick={() =>
+                                setFilters({ ...filtersObj, overall: true })
+                            }
+                        >
+                            Балл
+                        </button>
+                    </div>
+                </div>
                 <div className="app__list">{usersList}</div>
             </div>
         </div>

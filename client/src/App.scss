@@ -1,6 +1,21 @@
 .app {
     animation: app 2s;
     padding-top: 30px;
+    &__sort {
+        text-align: center;
+        width: 300px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        animation: filters 2s;
+        &-title {
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        &-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
     &__form {
         display: flex;
         flex-direction: column;
@@ -58,7 +73,7 @@
     }
 }
 .user {
-    width: 530px;
+    width: 600px;
     border: 1px solid teal;
     margin: 0 auto;
     padding: 20px 15px 10px 15px;
@@ -205,6 +220,21 @@
     }
 }
 
+.button {
+    padding: 3px 15px;
+    border: 1px solid teal;
+    border-radius: 5px;
+    transition: all 0.3s;
+    color: white;
+    &:hover {
+        background-color: teal;
+        color: white;
+    }
+    &.active {
+        background-color: teal;
+    }
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -233,9 +263,18 @@
     }
 }
 
+@keyframes filters {
+    0% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 @keyframes users {
     0% {
-        transform: translateX(100%);
+        transform: translateX(-100%);
     }
     100% {
         transform: translateX(0);
