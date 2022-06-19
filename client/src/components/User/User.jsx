@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
-import { EditForm } from "./EditForm";
+import { EditForm } from "./components/EditForm";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import "./User.scss";
 
 export const User = ({ user, deleteUser, users, setUsers, position }) => {
     const [showForm, setShowForm] = useState(false);

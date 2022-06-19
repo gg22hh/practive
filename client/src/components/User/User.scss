@@ -1,0 +1,59 @@
+.user {
+    width: 600px;
+    border: 1px solid teal;
+    margin: 0 auto;
+    padding: 20px 15px 10px 15px;
+    position: relative;
+    background-color: #27272cc2;
+    &__bottom {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        & li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid teal;
+            padding-bottom: 5px;
+        }
+    }
+    &__top {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    & .arrow {
+        transition: all 0.2s;
+        &.active {
+            transform: rotate(90deg);
+        }
+    }
+    &__party {
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    &__overall {
+        text-align: center;
+    }
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        & button {
+            color: white;
+            transition: all 0.2s;
+            &:hover {
+                color: teal;
+            }
+        }
+    }
+}
+
+@keyframes users {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

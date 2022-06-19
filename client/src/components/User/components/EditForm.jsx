@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./EditForm.scss";
 
 export const EditForm = ({ user, setShowForm, users, setUsers }) => {
     const [editName, setEditName] = useState(user.name);

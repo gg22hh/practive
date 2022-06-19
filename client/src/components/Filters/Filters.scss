@@ -1,0 +1,24 @@
+.app__sort {
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    animation: filters 2s;
+    &-title {
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+    &-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@keyframes filters {
+    0% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
